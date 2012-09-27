@@ -35,6 +35,7 @@ class mongodb (
   $location        = '',
   $packagename     = undef,
   $servicename     = $mongodb::params::service,
+  $config          = $mongodb::params::config,
   $logpath         = $mongodb::params::logpath,
   $logappend       = true,
   $mongofork       = true,
@@ -65,11 +66,6 @@ class mongodb (
   $source          = undef
 ) inherits mongodb::params {
 
-  if $enable_10gen {
-    include $mongodb::params::source
-    Class[$mongodb::params::source] -> Package[$mongodb::params::pkg_10gen]
-  }
-
   if $packagename {
     $package = $packagename
   } elsif $enable_10gen {
@@ -78,12 +74,17 @@ class mongodb (
     $package = $mongodb::params::package
   }
 
+  if $enable_10gen {
+    include $mongodb::params::source
+    Class[$mongodb::params::source] -> Package[$package]
+  }
+
   package { $package:
     name   => $package,
     ensure => installed,
   }
 
-  file { $mongodb::params::config:
+  file { $config:
     content => template('mongodb/mongod.conf.erb'),
     owner   => 'root',
     group   => 'root',
@@ -95,6 +96,6 @@ class mongodb (
     name      => $servicename,
     ensure    => running,
     enable    => true,
-    subscribe => File[$mongodb::params::config],
+    subscribe => File[$config],
   }
 }

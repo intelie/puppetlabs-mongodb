@@ -35,6 +35,7 @@ class mongodb (
   $location        = '',
   $packagename     = undef,
   $servicename     = $mongodb::params::service,
+  $hasstatus       = true,
   $config          = $mongodb::params::config,
   $logpath         = $mongodb::params::logpath,
   $logappend       = true,
@@ -96,6 +97,7 @@ class mongodb (
     name      => $servicename,
     ensure    => running,
     enable    => true,
+    hasstatus => $hasstatus, 
     subscribe => File[$config],
   }
 }

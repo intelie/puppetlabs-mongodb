@@ -93,6 +93,14 @@ class mongodb (
     require => Package[$package],
   }
 
+  file { "/etc/init.d/${servicename}":
+    ensure  => file,
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    content => template("${module_name}/mongod.erb")
+  }
+  -> 
   service { 'mongodb':
     name      => $servicename,
     ensure    => running,

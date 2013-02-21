@@ -38,7 +38,7 @@ class mongodb (
   $hasstatus       = true,
   $config          = $mongodb::params::config,
   $logpath         = $mongodb::params::logpath,
-  $pidfile         = $mongodb::params::pidfile,
+  $pidfilepath     = $mongodb::params::pidfilepath,
   $logappend       = true,
   $mongofork       = true,
   $port            = '27017',

@@ -11,6 +11,9 @@ bind_ip = <%= bind_ip %>
 <% end %>
 port = <%= port %>
 dbpath= <%= dbpath %>
+<% if @pidfilepath %>
+pidfilepath = <%= pidfilepath %>
+<% end %>
 
 <% if @nojournal %>
 # Disables write-ahead journaling
@@ -49,6 +52,9 @@ quota = <%= quota %>
 #   3=both
 #   7=W+some reads
 oplog = <%= oplog %>
+<% end %>
+<% if @oplogsize %>
+oplogSize = <%= oplogsize %>
 <% end %>
 <% if @nohints %>
 # Ignore query hints

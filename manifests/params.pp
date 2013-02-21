@@ -5,7 +5,7 @@ class mongodb::params{
       $source  = 'mongodb::sources::yum'
       $package = 'mongodb-server'
       $service = 'mongod'
-      $pidfilepath = "/var/run/${service}.pid"
+      $pidfilepath = "/var/lib/mongo/${service}.pid"
       $pkg_10gen = 'mongo-10gen-server'
       $dbpath = '/var/lib/mongodb'
       $logpath = '/var/log/mongodb/mongodb.log'
@@ -23,7 +23,7 @@ class mongodb::params{
       $source  = 'mongodb::sources::apt'
       $package = 'mongodb'
       $service = 'mongodb'
-      $pidfilepath = "/var/run/${service}.pid"
+      $pidfilepath = "/var/lib/mongo/${service}.pid"
       $pkg_10gen = 'mongodb-10gen'
       $dbpath = '/var/lib/mongo'
       $logpath = '/var/log/mongo/mongod.log'

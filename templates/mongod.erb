@@ -41,7 +41,7 @@ fi
 
 start()
 {
-  echo -n $"Starting mongod: "
+  echo -n $"Starting <%= servicename %>: "
   daemon --user "$MONGO_USER" $NUMACTL $mongod $OPTIONS
   RETVAL=$?
   echo
@@ -50,7 +50,7 @@ start()
 
 stop()
 {
-  echo -n $"Stopping mongod: "
+  echo -n $"Stopping <%= servicename %>: "
   killproc -p "$PIDFILE" -d 300 $mongod
   RETVAL=$?
   echo

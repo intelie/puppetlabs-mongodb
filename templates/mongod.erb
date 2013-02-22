@@ -67,7 +67,9 @@ RETVAL=0
 
 case "$1" in
   start)
-    start
+    status -p "$PIDFILE" <%= servicename %>
+    RETVAL=$?
+    [ $RETVAL -ne 0 ] &&  start
     ;;
   stop)
     stop
